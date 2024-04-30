@@ -2,7 +2,7 @@
 
 import { Curve } from '@/components/layout/transition-pane'
 import Head from 'next/head'
-import Image from 'next/image'
+import { Image } from '@/components/misc/image'
 import { Inter } from 'next/font/google'
 import { useRef, useState } from 'react'
 import gsap from 'gsap'
@@ -24,6 +24,8 @@ import { easeCustom, animateVariants } from '@/lib/utils'
 import { Magnetic } from '@/components/misc/magnetic'
 import { Marquee } from '@/components/ui/marquee'
 import { TimeInAthens } from '@/components/ui/local-time'
+import { Footer } from '@/components/layout/footer'
+import { Page } from '@/components/layout/page-layout'
 
 gsap.registerPlugin(useGSAP)
 gsap.registerPlugin(ScrollTrigger)
@@ -142,16 +144,23 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <div
-        className={'w-full h-full fixed inset-0 bg-[#FFF] bg-controller z-0'}
-      />
-      <div
-        className={
-          'w-full h-full fixed inset-0 bg-[#FFF000] opacity-100 footer-bg-controller z-0'
+      <Page.Wrapper
+        startContent={
+          <React.Fragment>
+            <div
+              className={
+                'w-full h-full fixed inset-0 bg-[#FFF] bg-controller z-0'
+              }
+            />
+            <div
+              className={
+                'w-full h-full fixed inset-0 bg-[#FFF000] opacity-100 footer-bg-controller z-0'
+              }
+            />
+          </React.Fragment>
         }
-      />
-      <article className={'page-container w-full sm:px-12 px-6 z-0'}>
-        <section
+      >
+        <Page.Section
           className={'relative w-full min-h-fit sm:min-h-[80vh] h-full z-0'}
           ref={section}
         >
@@ -366,7 +375,7 @@ export default function Home() {
                   >
                     <Image
                       className={
-                        'object-cover w-full h-full hover:scale-125 transition-all'
+                        'object-cover w-full h-full md:hover:scale-125 transition-all'
                       }
                       src={'/img/9.webp'}
                       alt={'story-showcase'}
@@ -382,7 +391,7 @@ export default function Home() {
                   >
                     <Image
                       className={
-                        'object-cover w-full h-full hover:scale-125 transition-all'
+                        'object-cover w-full h-full md:hover:scale-125 transition-all'
                       }
                       src={'/img/4.webp'}
                       alt={'story-showcase'}
@@ -398,7 +407,7 @@ export default function Home() {
                   >
                     <Image
                       className={
-                        'object-cover w-full h-full hover:scale-125 transition-all'
+                        'object-cover w-full h-full md:hover:scale-125 transition-all'
                       }
                       src={'/img/7.webp'}
                       alt={'story-showcase'}
@@ -408,12 +417,12 @@ export default function Home() {
                   </li>
                   <li
                     className={
-                      'flex items-center justify-center w-1/4 lg:w-[70px] bg-black group-hover:bg-[#FFF000] transition-colors delay-100 rounded-2xl link cursor-pointer'
+                      'flex items-center justify-center w-1/4 lg:w-[70px] bg-black lg:group-hover:bg-[#FFF000] transition-colors delay-100 rounded-2xl link cursor-pointer'
                     }
                   >
                     <UpRightArrow
                       className={
-                        'text-white group-hover:text-black transition-colors delay-100'
+                        'text-white lg:group-hover:text-black transition-colors delay-100'
                       }
                     />
                   </li>
@@ -430,13 +439,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-        <section className={'body z-0 block relative h-screen'}>
+        </Page.Section>
+        <Page.Section className={'body z-0 block h-screen'}>
           <div className={'block top-0 w-full h-[5vh] z-0'} ref={container}>
             <div
               ref={target}
               className={
-                'block relative overflow-hidden boxblock w-full sm:w-[calc(100vw-(48px*2))] h-[calc(100vh-(24px*2))] sm:h-[calc((100vw-(48px*2))*(9/16))] bg-black rounded-3xl md:rounded-[40px] z-0'
+                'block relative overflow-hidden boxblock w-full sm:w-[calc(100vw-(48px*2))] h-[calc(80vh-(24px*2))] sm:h-[calc((100vw-(48px*2))*(9/16))] bg-black rounded-3xl md:rounded-[40px] z-0'
               }
               onMouseEnter={hoverAction}
               onMouseLeave={hoverReset}
@@ -466,8 +475,8 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </section>
-        <section className={'flex relative items-center min-h-screen w-full'}>
+        </Page.Section>
+        <Page.Section className={'flex items-center min-h-screen w-full'}>
           <div className={'flex flex-col sm:flex-row justify-between w-full'}>
             <div className={'w-fit'}>
               <span
@@ -495,8 +504,8 @@ export default function Home() {
             </div>
           </div>
           {/* <UnderlineAction href={'/approach'}>Visit website</UnderlineAction> */}
-        </section>
-        <section className={'flex flex-col relative'}>
+        </Page.Section>
+        <Page.Section className={'flex flex-col'}>
           <h2
             className={
               'flex flex-col font-aeonik font-medium leading-none text-6xl sm:text-[120px] md:text-[160px]'
@@ -644,149 +653,16 @@ export default function Home() {
           >
             <div className={'w-full md:w-[40%]'} />
             <div className={'w-full md:w-[60%] flex justify-end'}>
-              <div className={'relative w-full md:w-[80%] aspect-square'}>
-                <UnderlineAction href={'/approach'}>
+              <div className={'relative w-full md:w-[80%]'}>
+                <UnderlineAction href={'/stories'}>
                   View all stories
                 </UnderlineAction>
               </div>
             </div>
           </div>
-        </section>
-        <footer
-          className={
-            'relative flex flex-col items-center justify-end sm:pb-12 pb-6 sm:gap-12 gap-6 min-h-screen'
-          }
-          ref={footer}
-        >
-          <div className={'flex w-screen inset-0 mb-24'}>
-            <Marquee baseVelocity={0.375}>
-              hello•γεια•ciao•bonjour•olá•こんにちは•
-            </Marquee>
-          </div>
-          <div
-            className={
-              'flex flex-col md:flex-row w-full border-b border-black/50'
-            }
-          >
-            <div className={'w-full md:w-1/2'}>
-              <div className={'w-full sm:max-w-[720px]'}>
-                <span
-                  className={
-                    'relative flex font-aeonik font-semibold uppercase mb-10'
-                  }
-                >
-                  (Let&apos;s connect)
-                </span>
-                <h3
-                  className={'font-aeonik font-medium text-black text-3xl pb-8'}
-                  style={{ fontFeatureSettings: '"ss01" 1' }}
-                >
-                  We&apos;re always looking for clients and collaborators that
-                  share the same vision. Drop us a mail and you will hear from
-                  us as soon as possible.
-                </h3>
-              </div>
-            </div>
-            <div className={'w-full md:w-1/4'}>
-              <span
-                className={
-                  'relative flex font-aeonik font-semibold uppercase mb-10'
-                }
-              >
-                (Let&apos;s connect)
-              </span>
-              <UnderlineAction href={'/approach'}>
-                we@usually.design
-              </UnderlineAction>
-            </div>
-            <div className={'w-full md:w-1/4'}>
-              <span
-                className={
-                  'relative flex font-aeonik font-semibold uppercase mb-10'
-                }
-              >
-                (Call us)
-              </span>
-              <UnderlineAction href={'/approach'}>
-                (+30) 210 123 4353
-              </UnderlineAction>
-            </div>
-          </div>
-
-          <div className={'flex flex-col-reverse md:flex-row w-full min-h-60'}>
-            <div className={'w-full md:w-1/2 flex flex-col justify-between'}>
-              <LogoSVG variant={'full'} className={'w-[254px] h-[76px]'} />
-              <p className={'font-aeonik text-xl font-semibold'}>
-                Copyright &copy; Usually {new Date().getFullYear()}
-              </p>
-            </div>
-            <div className={'w-full md:w-1/4 flex flex-col justify-between'}>
-              <ul className={'flex flex-col'}>
-                {[
-                  {
-                    title: 'Facebook',
-                    url: 'https://facebook.com',
-                  },
-                  {
-                    title: 'Instagram',
-                    url: 'https://twitter.com',
-                  },
-                  {
-                    title: 'Behance',
-                    url: 'https://behance.com',
-                  },
-                ].map((item, index) => (
-                  <li
-                    key={index}
-                    className={
-                      'font-aeonik font-semibold text-xl leading-tight w-fit'
-                    }
-                  >
-                    <Magnetic>
-                      <LinkFlip text={item.title} href={item.url} />
-                    </Magnetic>
-                  </li>
-                ))}
-              </ul>
-              <Link href={'/'}>
-                <p className={'font-aeonik text-xl font-semibold'}>
-                  Back to top
-                </p>
-              </Link>
-            </div>
-            <div className={'w-full md:w-1/4 flex flex-col justify-between'}>
-              <ul className={'flex flex-col'}>
-                {[
-                  {
-                    title: 'Stories',
-                    url: '/stories',
-                  },
-                  {
-                    title: 'Approach',
-                    url: '/approach',
-                  },
-                  {
-                    title: 'Contact',
-                    url: '/contact',
-                  },
-                ].map((item, index) => (
-                  <li
-                    key={index}
-                    className={
-                      'font-aeonik font-semibold text-xl leading-tight w-fit'
-                    }
-                  >
-                    <Magnetic>
-                      <LinkFlip text={item.title} href={item.url} />
-                    </Magnetic>
-                  </li>
-                ))}
-              </ul>
-              <TimeInAthens />
-            </div>
-          </div>
-        </footer>
-      </article>
+        </Page.Section>
+        <Footer.Root ref={footer} />
+      </Page.Wrapper>
     </React.Fragment>
   )
 }

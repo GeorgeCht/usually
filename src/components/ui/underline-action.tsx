@@ -11,7 +11,7 @@ const UnderlineAction = ({
     <TransitionLink
       {...props}
       className={cn(
-        'link-underline font-aeonik font-medium text-4xl pb-2 px-2.5',
+        'link-underline font-aeonik font-medium text-3xl sm:text-4xl pb-2 px-2.5',
         className
       )}
     >

@@ -20,8 +20,8 @@ const TimeInAthens: React.FC = () => {
         const formattedHours = hours % 12 || 12
 
         setAmpm(hours >= 12 ? 'pm' : 'am')
-        setHours(formattedHours.toString())
-        setMinutes(minutes.toString())
+        setHours(formattedHours.toString().padStart(2, '0'))
+        setMinutes(minutes.toString().padStart(2, '0'))
       } catch (error) {
         return
       }

@@ -73,7 +73,7 @@ const Marquee = ({
     >
       <Motion.div
         className={
-          'font-aeonik text-[368px] uppercase whitespace-nowrap flex flex-nowrap *:block *:mr-[30px] *:cursor-default'
+          'font-aeonik md:text-[368px] text-[128px] uppercase whitespace-nowrap flex flex-nowrap *:block *:mr-[30px] *:cursor-default'
         }
         style={{ x }}
       >

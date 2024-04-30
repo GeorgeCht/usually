@@ -137,8 +137,8 @@ const NavHeader = ({ className }: { className?: string }) => {
                 url: '/',
               },
               {
-                title: 'Work',
-                url: '/work',
+                title: 'Stories',
+                url: '/stories',
               },
               {
                 title: 'Approach',

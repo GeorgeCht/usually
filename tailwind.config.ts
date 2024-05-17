@@ -53,6 +53,12 @@ const config: Config = {
           '0%, 49%': { opacity: '0' },
           '50%, 100%': { opacity: '1' },
         },
+        tiltshake: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '25%': { transform: 'rotate(3deg)' },
+          '50%': { transform: 'rotate(0deg)' },
+          '75%': { transform: 'rotate(-3deg)' },
+        },
       },
       animation: {
         spin: 'spin 1s ease-in',
@@ -60,6 +66,7 @@ const config: Config = {
         tada: 'tada 1s ease-in-out',
         marquee: 'marquee var(--duration, 30s) linear infinite',
         blink: 'blink 0.975s ease-in-out infinite',
+        tiltshake: 'tiltshake 1s ease-in-out',
       },
     },
   },

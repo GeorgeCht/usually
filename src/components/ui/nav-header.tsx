@@ -2,9 +2,9 @@
 
 import { LogoSVG } from './logo-svg'
 import { animateVariants, cn, easeCustom } from '@/lib/utils'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AnimatePresence, motion as Motion, Variant } from 'framer-motion'
-import { PerspectiveButton, PerspectiveText } from './perspective-text'
+import { PerspectiveButton } from './perspective-text'
 import { useScreenSize, useScroll } from '@/lib/hooks'
 import { useCursorStore } from '@/stores/cursor'
 import { Link } from '../misc/link'
@@ -17,6 +17,7 @@ import { Magnetic } from '../misc/magnetic'
 // TODO: https://blog.olivierlarose.com/tutorials/awwwards-side-menu
 
 const NavHeader = ({ className }: { className?: string }) => {
+  const [flag, setFlag] = useState(true)
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [logoIsHovered, setLogoIsHovered] = useState(false)
   const { hoverUrl, hoverReset } = useCursorStore()
@@ -44,13 +45,17 @@ const NavHeader = ({ className }: { className?: string }) => {
     } as Variant,
   }
 
+  React.useEffect(() => {
+    setTimeout(() => setFlag(false), 2000)
+  }, [])
+
   return (
     <nav
       className={cn(
-        'fixed w-full flex items-center justify-between sm:px-12 px-6 sm:py-10 py-6 z-50 transition-transform !duration-700',
-        scrollDirection === 'up' && !menuIsOpen
-          ? '-translate-y-28'
-          : 'translate-y-0',
+        'fixed w-full flex items-center justify-between sm:px-12 px-6 sm:py-10 py-6 z-50 opacity-0 transition-transform !duration-700',
+        scrollDirection === 'up' && !menuIsOpen && !flag
+          ? ' opacity-100 -translate-y-28'
+          : ' opacity-100 translate-y-0',
         className
       )}
     >

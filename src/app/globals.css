@@ -136,4 +136,15 @@
       transform: translateX(calc(-150% - var(--gap)));
     }
   }
+  /* Embla carousel */
+  .embla {
+    @apply inset-0 w-screen m-auto;
+  }
+  .embla__viewport {
+    @apply overflow-hidden;
+  }
+  .embla__container {
+    @apply flex touch-pan-y -ml-10 lg:-ml-12;
+    backface-visibility: hidden;
+  }
 }
